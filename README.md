@@ -1,7 +1,7 @@
 # CompRemote
 
 Device that lets you turn on a desktop computer using a Samsung TV remote.
-Is set up to use the red "A" teletext button on Samsung remotes.
+Is set up to recognize the red "A" teletext button on Samsung remotes.
 
 This device works alongside your existing case power button, it does not replace it.
 Your existing power button will still work.
@@ -12,13 +12,18 @@ It's powered off of a standard USB2 motherboard pin header.
 On most motherboards this header will still be powered when the PC is off.
 The device still needs power when the PC is off so it can listen for button presses from a remote, to turn the PC on.
 
-# Bits
+# Components
+
+Full schematics and board layout files are included in KiCad format.
 
 * ATtiny85
 * 4N25 OptoIsolator
 * VS1838B Infrared Reciever
+* 10k Resistor
+* 1k Resistor
+* Standard header strips
 
-# Build Instructions
+# Software Build Instructions
 
 You don't have to rebuild the project, there is a precompiled CompRemote.hex you can flash with avrdude.
 

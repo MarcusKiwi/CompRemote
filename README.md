@@ -1,7 +1,7 @@
 # CompRemote
 
 Device that lets you turn on a desktop computer using a Samsung TV remote.
-Is set up to recognize the red "A" teletext button on Samsung remotes.
+Is set up to recognize the red teletext button.
 
 This device works alongside your existing case power button, it does not replace it.
 Your existing power button will still work.

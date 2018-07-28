@@ -2,8 +2,8 @@
 #include <util/delay.h>
 
 // pins
-#define IRED 0
-#define OPTO 2
+#define IRED 4
+#define OPTO 3
 
 // remote codes
 #define REM1 0xE0
@@ -19,22 +19,12 @@
 
 // vars
 uint8_t read = 0;
-uint8_t last = (0xFF & (1<<IRED));
+uint8_t last = 0;
 uint8_t count = 0;
 uint8_t stg = STRT_LO;
 uint8_t signal[4] = {0,0,0,0};
 uint8_t pos = 0;
 uint8_t bit = 0;
-
-// runs code is recieved
-void action() {	
-	if((signal[0]==REM1)&&(signal[1]==REM2)&&(signal[2]==REM3)&&(signal[3]==REM4)) {
-		PORTB &= ~(1<<OPTO); // output lo, opto on
-		_delay_ms(125);
-		PORTB |= (1<<OPTO); // output hi, opto off
-		_delay_ms(625);
-	}
-}
 
 void main() {
 	DDRB = (0x00 | (1<<OPTO)); // all input except opto port
@@ -67,7 +57,12 @@ void main() {
 					pos++;
 					// sequence finished
 					if(pos==4) {
-						action();
+						if((signal[0]==REM1)&&(signal[1]==REM2)&&(signal[2]==REM3)&&(signal[3]==REM4)) {
+							PORTB &= ~(1<<OPTO); // output lo, opto on
+							_delay_ms(125);
+							PORTB |= (1<<OPTO); // output hi, opto off
+							_delay_ms(625);
+						}
 						stg = 0;
 						pos = 0;
 					}

@@ -33,9 +33,6 @@
 *.su
 
 # Media
-*.jpg
-*.gif
-*.png
 *.wav
 *.mp3
 *.avi
